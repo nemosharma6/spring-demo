@@ -3,7 +3,6 @@ package com.learn.springdemo.api;
 import com.learn.springdemo.model.Person;
 import com.learn.springdemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,5 +46,10 @@ public class PersonController {
     @ResponseBody
     public Person getPersonById(@PathVariable("id") UUID id){
         return personService.selectPersonById(id);
+    }
+
+    @PostMapping("/save")
+    public void savePerson(@Valid @NotNull @RequestBody Person person) {
+        personService.savePerson(person);
     }
 }
